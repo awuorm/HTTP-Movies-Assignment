@@ -30,8 +30,6 @@ const MovieForm = (props) => {
                 props.history.push("/");
           })
           .catch(err => console.log(err.response));
-
-
       }
 
     return (
