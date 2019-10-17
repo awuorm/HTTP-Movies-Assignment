@@ -17,7 +17,7 @@ const App = () => {
       .get("http://localhost:5000/api/movies")
       .then(res => setMoviesList(res.data ))
       .catch(err => console.log(err.response));
-  },[]);
+  },[moviesList]);
 
   const addToSavedList = movie => {
     setSavedList([...savedList, movie]);

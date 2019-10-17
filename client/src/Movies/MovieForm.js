@@ -27,6 +27,7 @@ const MovieForm = (props) => {
           .then(res => {
     console.log("response from server,edited", res);
                 // setEditedMovie(res.data);
+                props.history.push("/");
           })
           .catch(err => console.log(err.response));
 
