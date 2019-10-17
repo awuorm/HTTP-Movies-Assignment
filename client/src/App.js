@@ -6,11 +6,12 @@ import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import MovieForm from "./Movies/MovieForm";
+import AddMovie from "./Movies/AddMovies";
 
 const App = () => {
   const [savedList, setSavedList] = useState([]);
   const [moviesList, setMoviesList] = useState([]);
-  const [editedMovie, setEditedMovie] = useState({director:"", title:"", metascore:""});
+  const [editedMovie, setEditedMovie] = useState({id:"",title:"", director:"",  metascore:""});
 
   useEffect(() => {
     axios
@@ -34,6 +35,8 @@ const App = () => {
         }}/>
         <Route  path={`/update-movie/:id`} 
     render={(props) => <MovieForm editedMovie={editedMovie} setEditedMovie={setEditedMovie} {...props}/> }/>
+      <Route  path={`/add-movie`} 
+    render={(props) => <AddMovie editedMovie={editedMovie} setEditedMovie={setEditedMovie} {...props}/> }/>
       </>
       
   );
