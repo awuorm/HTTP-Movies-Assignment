@@ -1,7 +1,7 @@
 import React from 'react';
-
+import {NavLink} from "react-router-dom";
 const MovieCard = props => {
-  const { title, director, metascore, stars } = props.movie;
+  const { title, director, metascore, stars,id } = props.movie;
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -18,6 +18,7 @@ const MovieCard = props => {
           {star}
         </div>
       ))}
+      <NavLink to={`/update-movie/${id}`}>Edit Movie</NavLink>
     </div>
   );
 };

@@ -1,26 +1,29 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import MovieCard from "./MovieCard";
+import MovieForm from "./MovieForm";
 export default class MovieList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      movies: []
-    };
+    // this.state = {
+    //   movies: []
+    // };
   }
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/api/movies")
-      .then(res => this.setState({ movies: res.data }))
-      .catch(err => console.log(err.response));
-  }
-
+  
+  // componentDidMount() {
+  //   axios
+  //   .get("http://localhost:5000/api/movies")
+  //   .then(res => this.setState({ movies: res.data }))
+  //   .catch(err => console.log(err.response));
+  // }
+  
   render() {
+    console.log("props from app ", this.props.moviesList);
     return (
       <div className="movie-list">
-        {this.state.movies.map(movie => (
+        {this.props.moviesList.map(movie => (
           <MovieDetails key={movie.id} movie={movie} />
         ))}
       </div>
@@ -29,9 +32,9 @@ export default class MovieList extends Component {
 }
 
 function MovieDetails({ movie }) {
-  return (
+  return (<>
     <Link to={`/movies/${movie.id}`}>
       <MovieCard movie={movie} />
     </Link>
-  );
+  </>);
 }
