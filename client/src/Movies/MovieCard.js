@@ -1,23 +1,20 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 const MovieCard = props => {
-  const { title, director, metascore, stars,id } = props.movie;
-  
-  
-  const deleteMovie = (e) => {
+  const { title, director, metascore, stars, id } = props.movie;
+
+  const deleteMovie = e => {
     e.preventDefault();
     axios
-    .delete(`http://localhost:5000/api/movies/${id}`)
-    .then(res => {
-console.log("response from server,deleted", res);
-          // setEditedMovie(res.data);
-          props.history.push("/");
-    })
-    .catch(err => console.log(err.response));
-}
-  
+      .delete(`http://localhost:5000/api/movies/${id}`)
+      .then(res => {
+        props.history.push("/");
+      })
+      .catch(err => console.log(err.response));
+  };
+
   return (
     <div className="movie-card">
       <h2>{title}</h2>
