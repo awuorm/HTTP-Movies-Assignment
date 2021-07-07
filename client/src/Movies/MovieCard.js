@@ -1,7 +1,20 @@
-import React from 'react';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const MovieCard = props => {
-  const { title, director, metascore, stars } = props.movie;
+  const { title, director, metascore, stars, id } = props.movie;
+
+  const deleteMovie = e => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:5000/api/movies/${id}`)
+      .then(res => {
+        props.history.push("/");
+      })
+      .catch(err => console.log(err.response));
+  };
+
   return (
     <div className="movie-card">
       <h2>{title}</h2>
@@ -18,6 +31,8 @@ const MovieCard = props => {
           {star}
         </div>
       ))}
+      <NavLink to={`/update-movie/${id}`}>Edit Movie</NavLink>
+      <button onClick={deleteMovie}>Delete Movie</button>
     </div>
   );
 };
